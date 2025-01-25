@@ -20,6 +20,7 @@ abstract class ApiController extends Controller
         string $transformer,
         iterable $iterable,
     ): StreamedApiResponse {
+        // @todo: This helper method may by refactored using some kind of custom ServiceContainer
         $transformerInstance = \resolve($transformer);
 
         return new StreamedApiResponse(
@@ -39,6 +40,7 @@ abstract class ApiController extends Controller
         string $transformer,
         Model $model,
     ): ApiResponse {
+        // @todo: This helper method may by refactored using some kind of custom ServiceContainer
         $transformerInstance = \resolve($transformer);
 
         return new ApiResponse(
