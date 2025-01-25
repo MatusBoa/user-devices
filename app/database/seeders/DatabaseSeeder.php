@@ -1,10 +1,12 @@
 <?php
 
+declare(strict_types=1);
+
 namespace Database\Seeders;
 
-use App\Models\User;
-// use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
+use App\Container\User\Database\Model\User;
+use App\Container\Device\Database\Model\Device;
 
 class DatabaseSeeder extends Seeder
 {
@@ -13,11 +15,8 @@ class DatabaseSeeder extends Seeder
      */
     public function run(): void
     {
-        // User::factory(10)->create();
-
-        User::factory()->create([
-            'name' => 'Test User',
-            'email' => 'test@example.com',
-        ]);
+        foreach (User::factory()->count(3)->create() as $user) {
+            Device::factory()->withUser($user)->count(3)->create();
+        }
     }
 }

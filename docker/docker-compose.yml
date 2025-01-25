@@ -32,6 +32,7 @@ services:
   fpm:
     build:
       context: ../app
+      target: fpm
     volumes:
       - ./../app:/opt/app
     depends_on:
@@ -39,3 +40,14 @@ services:
     networks:
       - database
       - fastcgi
+
+  workspace:
+    build:
+      context: ../app
+      target: workspace
+    volumes:
+      - ./../app:/opt/app
+    depends_on:
+      - mariadb
+    networks:
+      - database
